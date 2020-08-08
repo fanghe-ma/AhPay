@@ -1,0 +1,101 @@
+import React, {Component} from 'react';
+import {
+   View,
+   Text,
+   StyleSheet,
+   Image,
+   ImageBackground,
+   ScrollView,
+   Dimensions,
+} from 'react-native';
+
+const imgPath = {
+   backgroundImg : require('../res/background_full.png'),
+   cardImg : require('../res/creditCard.png'),
+}
+
+class Card extends Component{
+   render(){
+      return(
+         <View style = {styles.cardContainer}>
+            <Image 
+               source = {imgPath.cardImg} 
+               style = {styles.card} 
+            />
+         </View>
+      );
+   }
+}
+
+class InfoBar extends Component{
+   render(){
+      return(
+         <View style = {styles.infoBar}>
+            <Text>Balance 1029 </Text>
+         </View>
+      ); 
+   }
+}
+
+export default class CardInfoContainer extends Component{
+   render(){
+      return(
+         <View style = {styles.mainContainer}>
+            <ImageBackground 
+               source = {require('../res/background.png')} 
+               style = {styles.backgroundStyle}>
+              <View style = {styles.scrollContainer}>
+                 <ScrollView 
+                     horizontal = {true} 
+                     style = {{height : '100%'}}
+                     contentContainerStyle = {{
+                        alignItems : 'center',
+                        paddingHorizontal : 30,
+
+                     }}>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                 </ScrollView>
+                 <InfoBar/> 
+              </View>
+           </ImageBackground>
+         </View>
+      );
+   }
+}
+
+const styles = StyleSheet.create({
+   mainContainer : {
+      flex :1,
+   },
+   backgroundStyle : {
+      flex : 1,
+      top : 0, 
+      justifyContent : 'center',
+   },
+   scrollContainer : {
+      height : '55%', 
+   },
+   cardContainer : {
+      height : '100%',
+      width : Dimensions.get('window').width * 0.85,
+      marginRight : 20,
+   },
+   card : {
+      flex : 1,
+      height : undefined,
+      width : undefined,
+   },
+   infoBar : {
+      backgroundColor : 'yellow',
+      position : 'absolute',
+      height : 75,
+      width : Dimensions.get('window').width * 0.90,
+      top : 215,
+      alignSelf : 'center',
+   },
+});
+
+
